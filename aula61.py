@@ -22,4 +22,43 @@ contrário disso:
     resultado é o valor da conta
 
 O primeiro dígito do CPF é 7
+
+O segundo dígito do CPF é 0
 """
+
+cpf = input("Enter your CPF: ")
+
+cpf_list = []
+for ch in cpf:
+    if (ch.isdecimal()):
+        cpf_list.append(int(ch))
+
+contador = 0
+multiplier = 10
+result = 0
+temp = 0
+
+while contador < 9:
+    temp = cpf_list[contador] * multiplier
+    result = result + temp
+    contador += 1
+    multiplier -= 1
+
+first_digit = (result * 10) % 11
+first_digit2 = first_digit if first_digit <= 9 else 0
+
+
+print(first_digit2)
+
+# cpf = '36440847007'  # Esse CPF gera o primeiro dígito como 10 (0)
+cpf = '74682489070'
+nove_digitos = cpf[:9]
+contador_regressivo_1 = 10
+
+resultado_digito_1 = 0
+for digito_1 in nove_digitos:
+    resultado_digito_1 += int(digito_1) * contador_regressivo_1
+    contador_regressivo_1 -= 1
+digito_1 = (resultado_digito_1 * 10) % 11
+digito_1 = digito_1 if digito_1 <= 9 else 0
+print(digito_1)
